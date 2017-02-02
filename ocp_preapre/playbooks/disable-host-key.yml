@@ -1,0 +1,8 @@
+---
+- hosts: master
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: disable strict host key 
+    shell: echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
