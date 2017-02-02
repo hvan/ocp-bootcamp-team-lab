@@ -1,0 +1,25 @@
+---
+- hosts: master1.example.com
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Install openshift packages 
+    yum: name={{ item }} state=latest
+    with_items:
+      - wget
+      - git
+      - net-tools
+      - bind-utils
+      - iptables-services
+      - bridge-utils
+      - bash-completion
+      - atomic-openshift-utils
+      - atomic-openshift-excluder
+      - atomic-openshift-docker-excluder
+
+  - name: run command
+    command: atomic-openshift-excluder unexclude
+    register: out
+
+  - debug: var=out.stdout_lines
