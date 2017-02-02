@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Install libselinux-python
+    yum:
+      name: libselinux-python
+      state: present
+
+  - name: Install vim package
+    yum:
+      name: vim
+      state: present
+

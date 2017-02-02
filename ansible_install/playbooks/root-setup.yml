@@ -1,0 +1,14 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  become_user: root
+
+  tasks:
+
+  - name: Add local root's SSH Public Key to Authorized Keys
+    authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file','/root/root.pub') }}"
+
