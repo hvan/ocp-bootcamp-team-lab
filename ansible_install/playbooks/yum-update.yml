@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Update all yum managed packages
+    yum:
+      name: "*"
+      state: latest
+
