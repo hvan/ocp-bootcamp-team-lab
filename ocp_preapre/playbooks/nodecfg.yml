@@ -4,13 +4,11 @@
   become_user: root
 
   tasks:
-  - name: Install libselinux-python
-    yum:
-      name: libselinux-python
-      state: present
+  - name: Install libselinux-python, and atomic-openshift-utils
+    yum: name={{ item }} state=present
+    with_items:
+      - libselinux-python
+      - atomic-openshift-utils
 
-  - name: Install vim package
-    yum:
-      name: vim
-      state: present
+
 
